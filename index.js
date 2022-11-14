@@ -29,15 +29,15 @@ async function rebootServer(serverId) {
 
 
 client.on("messageCreate", async (message) => {
-    if (message.author.id != "927200461377929246") message.channel.send("Only Zariel can run this!");
+    if (message.author.id !== 927200461377929246) await message.channel.send("Only Zariel can run this!");
     if(message.content === "!reboot"){
-        message.channel.send("Rebooting server").then(async () => {
+        await message.channel.send("Rebooting server").then(async () => {
             try {
                 await rebootServer(process.env.SERVER_ID);
-                message.edit("Rebooted!")
+                await message.edit("Rebooted!")
             } catch (error) {
                 console.log(error);
-                message.edit("Reboot failed!")
+                await message.edit("Reboot failed!")
             }
         })
         return;
