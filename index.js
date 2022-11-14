@@ -30,6 +30,7 @@ client.on("messageCreate", (message) => {
     if(message.content == "!reboot"){
         message.channel.send("Rebooting...");
         rebootServer(process.env.SERVER_ID);
+        message.channel.send("Rebooted!");
         return;
     };
 });
