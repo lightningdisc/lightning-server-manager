@@ -29,7 +29,7 @@ async function rebootServer(serverId) {
 
 
 client.on("messageCreate", async (message) => {
-    if (message.author.id !== 927200461377929246) message.channel.send("Only Zariel can run this!");
+    if (message.author.id != "927200461377929246") message.channel.send("Only Zariel can run this!");
     if(message.content === "!reboot"){
         message.channel.send("Rebooting server").then(async () => {
             try {
