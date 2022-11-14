@@ -1,11 +1,8 @@
-const { GatewayIntentBits, Client, Partials }= require("discord.js");
+const Discord = require("discord.js");
 const axios = require('axios')
 require('dotenv').config();
 
-const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages], 
-    partials: [Partials.Message]
-}); 
+const client = new Discord.Client({intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_PRESENCES", "GUILD_MESSAGES"]}); 
 
 async function rebootServer(serverId) {
     const options = {
@@ -28,18 +25,11 @@ async function rebootServer(serverId) {
 }
 
 
-client.on("messageCreate", async (message) => {
-    if (message.author.id !== 927200461377929246) return;
-    if(message.content === "!reboot"){
-        await message.channel.send("Rebooting server").then(async () => {
-            try {
-                await rebootServer(process.env.SERVER_ID);
-                await message.edit("Rebooted!")
-            } catch (error) {
-                console.log(error);
-                await message.edit("Reboot failed!")
-            }
-        })
+client.on("messageCreate", (message) => {
+    if (message.author.id != 683002779396079667) return;
+    if(message.content == "!reboot"){
+        message.channel.send("Rebooting...");
+        rebootServer(process.env.SERVER_ID);
         return;
     };
 });
