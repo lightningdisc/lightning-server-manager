@@ -24,9 +24,10 @@ async function rebootServer(serverId) {
     });
 }
 
+const owners = ["927200461377929246", "737459216175857686"]
 
 client.on("messageCreate", (message) => {
-    if (message.author.id != 927200461377929246 || 737459216175857686) return;
+    if (!owners.includes(message.author.id)) return;
     if(message.content == "!reboot"){
         message.channel.send("Rebooting...");
         rebootServer(process.env.SERVER_ID);
