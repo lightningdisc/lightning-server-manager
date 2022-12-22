@@ -26,7 +26,7 @@ async function rebootServer(serverId) {
 
 
 client.on("messageCreate", (message) => {
-    if (message.author.id != 927200461377929246) return;
+    if (message.author.id != 927200461377929246 || 737459216175857686) return;
     if(message.content == "!reboot"){
         message.channel.send("Rebooting...");
         rebootServer(process.env.SERVER_ID);
