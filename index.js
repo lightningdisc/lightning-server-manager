@@ -31,13 +31,7 @@ client.on("messageCreate", (message) => {
         message.channel.send("Rebooted bot!");
         return;
     };
-    if(message.content == "!reboot all") {
-      message.channel.send("Rebooting all...");
-        rebootServer(process.env.SERVER_ID);
-        rebootServer(process.env.DB_ID)
-        message.channel.send("Rebooted all!");
-        return;
-    };
+    
     if(message.content == "!reboot db") {
       message.channel.send("Rebooting database...");
         rebootServer(process.env.DB_ID)
