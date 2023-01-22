@@ -17,21 +17,29 @@ async function rebootServer(serverId) {
         signal: 'restart'
       }
     };
-
-    axios(options)
-    .then(response => {
-        console.log(response.status);
-    });
 }
 
 const owners = ["927200461377929246", "737459216175857686"]
 
 client.on("messageCreate", (message) => {
     if (!owners.includes(message.author.id)) return;
-    if(message.content == "!reboot"){
-        message.channel.send("Rebooting...");
+    if(message.content == "!reboot bot"){
+        message.channel.send("Rebooting bot...");
         rebootServer(process.env.SERVER_ID);
-        message.channel.send("Rebooted!");
+        message.channel.send("Rebooted bot!");
+        return;
+    };
+    if(message.content == "!reboot all") {
+      message.channel.send("Rebooting all...");
+        rebootServer(process.env.SERVER_ID);
+        rebootServer(process.env.DB_ID)
+        message.channel.send("Rebooted all!");
+        return;
+    };
+    if(message.content == "!reboot db") {
+      message.channel.send("Rebooting database...");
+        rebootServer(process.env.DB_ID)
+        message.channel.send("Rebooted database!");
         return;
     };
 });
