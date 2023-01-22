@@ -17,6 +17,8 @@ async function rebootServer(serverId) {
         signal: 'restart'
       }
     };
+
+    axios(options).then(response => console.log(response.status))
 }
 
 const owners = ["927200461377929246", "737459216175857686"]
